@@ -26,7 +26,7 @@ Junction Tables
 
     employees_rides_operates DONE
 
-    parkEvents_parkLocations_resides
+    parkEvents_parkLocations_resides DONE
 
-    parkEvents_buildings_occureAt
+    parkEvents_buildings_occureAt DONE
 
