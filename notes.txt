@@ -11,7 +11,7 @@ Order of PHPmyadmin creation:
 
     passengerRestrictions - Eric DONE
 
-    Concessions - AJ 
+    concessions - AJ 
 
     repairs - Noah
 
