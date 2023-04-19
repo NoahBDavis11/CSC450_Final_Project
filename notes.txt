@@ -3,13 +3,13 @@ Order of PHPmyadmin creation:
 
     parkLocations - AJ
 
-    employees - Noah
+    employees - Noah DONE
     
-    buildings - Eric DONE
+    buildings - Eric
 
-    rides - Eric DONE
+    rides - Eric
 
-    passengerRestrictions - Eric DONE
+    passengerRestrictions - Eric
 
     concessions - AJ
 
@@ -18,13 +18,13 @@ Order of PHPmyadmin creation:
     replacementParts - Noah
 
 Junction Tables
-    employees_concessions_operate DONE
+    employees_concessions_operate 
 
     employees_repairs_perform
 
-    employees_parkEvents_host DONE
+    employees_parkEvents_host
 
-    employees_rides_operates DONE
+    employees_rides_operates
 
     parkEvents_parkLocations_resides
 

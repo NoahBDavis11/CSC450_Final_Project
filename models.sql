@@ -30,4 +30,6 @@ CREATE TABLE Rides_passenger_restrictions (
     PRIMARY KEY (ride_restrictions),
     FOREIGN KEY (ride_id) REFERENCES Rides(ride_id));
 
-CREATE TABLE employees ( emp_id INT PRIMARY KEY AUTO_INCREMENT, emp_FN varchar(50) not null, emp_LN varchar(50) not null, street_name_num varchar(75) not null, city varchar(30) not null, emp_state varchar(30) not null,zip varchar(10) not null,country varchar(30) not null,primary_phone varchar(10) not null,emp_role varchar(50) not null,wage int, date_hired date not null,email varchar(75) not null,salary int); 
+CREATE TABLE employees ( emp_id INT PRIMARY KEY AUTO_INCREMENT, emp_FN varchar(50) not null, emp_LN varchar(50) not null, street_name_num varchar(75) not null, city varchar(30) not null, emp_state varchar(30) not null,zip varchar(10) not null,country varchar(30) not null,primary_phone varchar(10) not null,emp_role varchar(50) not null,wage int, date_hired date not null,email varchar(75) not null,salary int);
+
+Create table repairs(rep_num INT NOT NULL AUTO_INCREMENT, ride_id INT NOT NULL, rep_company_name varchar(50), rep_start_date date NOT NULL, rep_fin_date date NOT NULL, rep_description varchar(400) not null, total_cost int not null, primary key (rep_num , ride_id), foreign key (ride_id) references rides(ride_id))
