@@ -29,6 +29,5 @@ CREATE TABLE Rides_passenger_restrictions (
     ride_id INT,
     PRIMARY KEY (ride_restrictions),
     FOREIGN KEY (ride_id) REFERENCES Rides(ride_id));
-CREATE TABLE parkEvents ( event_id INT PRIMARY KEY AUTO_INCREMENT, event_name VARCHAR(50) NOT NULL,event_start_date DATE NOT NULL, event_end_date DATE NOT NULL, event_description VARCHAR(400) NOT NULL); 
 
 CREATE TABLE employees ( emp_id INT PRIMARY KEY AUTO_INCREMENT, emp_FN varchar(50) not null, emp_LN varchar(50) not null, street_name_num varchar(75) not null, city varchar(30) not null, emp_state varchar(30) not null,zip varchar(10) not null,country varchar(30) not null,primary_phone varchar(10) not null,emp_role varchar(50) not null,wage int, date_hired date not null,email varchar(75) not null,salary int); 
