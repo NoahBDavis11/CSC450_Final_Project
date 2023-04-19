@@ -5,7 +5,7 @@ CREATE TABLE parkEvents (
     event_end_date DATE NOT NULL, 
     event_description VARCHAR(400) NOT NULL); 
 
-CREATE TABLE Locations ( 
+CREATE TABLE parkLocations ( 
     section_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
     section_name VARCHAR(50) NOT NULL UNIQUE); 
 
@@ -35,7 +35,7 @@ CREATE TABLE Rides_passenger_restrictions (
     PRIMARY KEY (ride_restrictions),
     FOREIGN KEY (ride_id) REFERENCES Rides(ride_id));
     
-CREATE TABLE parkConsessions
+CREATE TABLE Consessions
 (
     cons_id	INT			PRIMARY KEY		AUTO_INCREMENT,
     cons_company_name	VARCHAR(50),
@@ -44,10 +44,10 @@ CREATE TABLE parkConsessions
     cons_close 			TIME			NOT NULL, 
     cons_name 			VARCHAR(50)		NOT NULL,
     build_id 			INT,
-    section_id 			INT				NOT NULL,
+    section_id 			INT			NOT NULL,
 	FOREIGN KEY (build_id) REFERENCES
     	Buildings(build_id),
-    FOREIGN KEY (section_id) REFERENCES
+    	FOREIGN KEY (section_id) REFERENCES
     	parkLocations(section_id)
 	);
     
@@ -91,8 +91,4 @@ CREATE TABLE occure_at (
     FOREIGN KEY (build_id) REFERENCES Buildings(build_id),
     FOREIGN KEY (event_id) REFERENCES Events(event_id));
 
-CREATE TABLE employees ( emp_id INT PRIMARY KEY AUTO_INCREMENT, emp_FN varchar(50) not null, emp_LN varchar(50) not null, street_name_num varchar(75) not null, city varchar(30) not null, emp_state varchar(30) not null,zip varchar(10) not null,country varchar(30) not null,primary_phone varchar(10) not null,emp_role varchar(50) not null,wage int, date_hired date not null,email varchar(75) not null,salary int);
-
-
-
-Create table repairs(rep_num INT NOT NULL AUTO_INCREMENT, ride_id INT NOT NULL, rep_company_name varchar(50), rep_start_date date NOT NULL, rep_fin_date date NOT NULL, rep_description varchar(400) not null, total_cost int not null, primary key (rep_num , ride_id), foreign key (ride_id) references rides(ride_id))
+CREATE TABLE employees ( emp_id INT PRIMARY KEY AUTO_INCREMENT, emp_FN varchar(50) not null, emp_LN varchar(50) not null, street_name_num varchar(75) not null, city varchar(30) not null, emp_state varchar(30) not null,zip varchar(10) not null,country varchar(30) not null,primary_phone varchar(10) not null,emp_role varchar(50) not null,wage int, date_hired date not null,email varchar(75) not null,salary int); 
