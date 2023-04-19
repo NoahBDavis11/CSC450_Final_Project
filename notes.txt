@@ -1,21 +1,32 @@
 Order of PHPmyadmin creation: 
+    parkEvents - AJ
 
-    Events 
+    parkLocations - AJ
 
-    Park Locations 
+    employees - Noah
+    
+    buildings - Eric
 
-    Employees 
+    rides - Eric
 
-    Buildings 
+    passengerRestrictions - Eric
 
-    Rides 
+    concessions - AJ
 
-    Passenger Restrictions 
+    repairs - Noah
 
-    Concessions 
+    replacementParts - Noah
 
-    Repairs 
+Junction Tables
+    employees_concessions_operate
 
-    Replacement Parts 
+    employees_repairs_perform
 
- 
+    employees_parkEvents_host
+
+    employees_rides_operates
+
+    parkEvents_parkLocations_resides
+
+    parkEvents_buildings_occureAt
+
