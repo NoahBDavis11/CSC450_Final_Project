@@ -5,11 +5,11 @@ Order of PHPmyadmin creation:
 
     employees - Noah
     
-    buildings - Eric
+    buildings - Eric DONE
 
-    rides - Eric
+    rides - Eric DONE
 
-    passengerRestrictions - Eric
+    passengerRestrictions - Eric DONE
 
     concessions - AJ
 
@@ -24,7 +24,7 @@ Junction Tables
 
     employees_parkEvents_host
 
-    employees_rides_operates
+    employees_rides_operates DONE
 
     parkEvents_parkLocations_resides
 
