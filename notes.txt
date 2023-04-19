@@ -1,0 +1,21 @@
+Order of PHPmyadmin creation: 
+
+    Events 
+
+    Park Locations 
+
+    Employees 
+
+    Buildings 
+
+    Rides 
+
+    Passenger Restrictions 
+
+    Concessions 
+
+    Repairs 
+
+    Replacement Parts 
+
+ 
