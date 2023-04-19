@@ -18,11 +18,11 @@ Order of PHPmyadmin creation:
     replacementParts - Noah
 
 Junction Tables
-    employees_concessions_operate
+    employees_concessions_operate DONE
 
     employees_repairs_perform
 
-    employees_parkEvents_host
+    employees_parkEvents_host DONE
 
     employees_rides_operates DONE
 
