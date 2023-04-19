@@ -31,16 +31,14 @@ CREATE TABLE Rides_passenger_restrictions (
 CREATE TABLE operate (
     ride_id INT NOT NULL,
     emp_id INT NOT NULL,
-    PRIMARY KEY (ride_id),
-    PRIMARY KEY (emp_id),
+    PRIMARY KEY (ride_id, emp_id),
     FOREIGN KEY (ride_id) REFERENCES Rides(ride_id),
     FOREIGN KEY (emp_id) REFERENCES Employees(emp_id));
 
 CREATE TABLE operate (
     cons_id INT NOT NULL,
     emp_id INT NOT NULL,
-    PRIMARY KEY (cons_id),
-    PRIMARY KEY (emp_id),
+    PRIMARY KEY (cons_id, emp_id),
     FOREIGN KEY (cons_id) REFERENCES Concessions(cons_id),
     FOREIGN KEY (emp_id) REFERENCES Employees(emp_id));
 
@@ -55,17 +53,25 @@ CREATE TABLE host (
 CREATE TABLE resides (
     section_id INT NOT NULL,
     event_id INT NOT NULL,
-    PRIMARY KEY (section_id),
-    PRIMARY KEY (event_id),
+    PRIMARY KEY (section_id, event_id),
     FOREIGN KEY (section_id) REFERENCES Park_Locations(section_id),
     FOREIGN KEY (event_id) REFERENCES Events(event_id));
 
 CREATE TABLE occure_at (
     build_id INT NOT NULL,
     event_id INT NOT NULL,
-    PRIMARY KEY (build_id),
-    PRIMARY KEY (event_id),
+    PRIMARY KEY (build_id, event_id),
     FOREIGN KEY (build_id) REFERENCES Buildings(build_id),
     FOREIGN KEY (event_id) REFERENCES Events(event_id));
+
+CREATE TABLE perform (
+    emp_id INT NOT NULL,
+    rep_num INT NOT NULL,
+    ride_id INT NOT NULL,
+    PRIMARY KEY (emp_id, rep_num, ride_id),
+    FOREIGN KEY (emp_id) REFERENCES Employees(emp_id),
+    FOREIGN KEY (rep_num) REFERENCES Repairs(rep_num),
+	FOREIGN KEY (ride_id) REFERENCES Repairs(ride_id));
+
 
 CREATE TABLE employees ( emp_id INT PRIMARY KEY AUTO_INCREMENT, emp_FN varchar(50) not null, emp_LN varchar(50) not null, street_name_num varchar(75) not null, city varchar(30) not null, emp_state varchar(30) not null,zip varchar(10) not null,country varchar(30) not null,primary_phone varchar(10) not null,emp_role varchar(50) not null,wage int, date_hired date not null,email varchar(75) not null,salary int); 
