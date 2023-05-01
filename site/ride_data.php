@@ -4,7 +4,7 @@
 		
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		//Retrieve specific vendor data using prepared statements:
-		$query = "SELECT *, concat(rep_num, ride_id) as combKey, count(*) as rep_count FROM repairs natural join replacementParts natural join employees_repairs_perform WHERE ride_id = ? group by combKey";
+		$query = "SELECT * FROM rides WHERE ride_id = ?";
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_bind_param($stmt, "i", $ride_id);
 		mysqli_stmt_execute($stmt);
@@ -12,13 +12,13 @@
 		$rows = mysqli_num_rows($result);
 		$client = mysqli_fetch_assoc($result); //Fetches the row as an associative array with DB attributes as keys
 		$ride_id = $client['ride_id'];
-		$rep_num = $client['rep_num'];
-		$rep_st= $client['rep_start_date'];
-		$rep_fin_date = $client['rep_fin_date'];
-		$rep_cost = $client['total_cost'];
-		$rep_comp = $client['rep_company_name'];
-		$rep_desc = $client['rep_description'];
-		$rep_cnt = $client['rep_count'];
+		$ride_name = $client['ride_name'];
+		$ride_type= $client['ride_type'];
+		$ride_open = $client['ride_open'];
+		$ride_close = $client['ride_close'];
+		$max_passengers = $client['max_passengers'];
+		$build_id = $client['build_id'];
+		$section_id = $client['section_id'];
 
 	}
 	else {
@@ -37,14 +37,14 @@
 </head>
 <body>
 	<h2>Ride: <?php echo "$ride_id";?></h2>
-	<h3>Repair Num: <?php echo "$rep_num";?></h2> 
-	<h3>Start Date: <?php echo "$rep_st";?></h2> 
-	<h2>Finish Date: <?php echo "$rep_fin_date";?></h2>
-	<h3>Total Cost: <?php echo "$rep_cost";?></h2> 
-	<h3>Part Count: <?php echo "$rep_cnt";?></h2> 
-	<h3>Company: <?php echo "$rep_comp";?></h2> 
-	<h3>Description: <?php echo "$rep_desc";?></h2>
-	<h3><a href="find_repair.html">Lookup another repair</a></h3>
+	<h3>Name: <?php echo "$ride_name";?></h2> 
+	<h3>Type: <?php echo "$ride_type";?></h2> 
+	<h2>Open Time: <?php echo "$ride_open";?></h2>
+	<h3>Close Time: <?php echo "$ride_close";?></h2> 
+	<h3>Max Passengers: <?php echo "$max_passengers";?></h2> 
+	<h3>Building: <?php echo "$build_id";?></h2> 
+	<h3>Section: <?php echo "$section_id";?></h2>
+	<h3><a href="find_ride.html">Lookup another ride</a></h3>
 	<h3><a href="index.html">Back to Home</a></h3>
 </body>
 </html>
