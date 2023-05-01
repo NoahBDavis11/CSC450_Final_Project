@@ -4,14 +4,14 @@
 		
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		//Retrieve specific vendor data using prepared statements:
-		$query = "SELECT *, GROUP_CONCAT(ride_restrictions SEPARATOR ', ') as rstcts, GROUP_CONCAT(emp_id SEPARATOR ', ') as opEmps FROM rides natural join passengerRestrictions natural join employees_rides_operates WHERE ride_id = ? group by ride_id";
+		$query = "SELECT *, GROUP_CONCAT(distinct pr.ride_restrictions SEPARATOR ', ') as rstcts, GROUP_CONCAT(distinct emp_id SEPARATOR ', ') as opEmps FROM rides r left join passengerRestrictions pr on r.ride_id = pr.ride_id left join employees_rides_operates ero on r.ride_id = ero.ride_id WHERE r.ride_id = ? group by r.ride_id";
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_bind_param($stmt, "i", $ride_id);
 		mysqli_stmt_execute($stmt);
 		$result = mysqli_stmt_get_result($stmt); 
 		$rows = mysqli_num_rows($result);
 		$client = mysqli_fetch_assoc($result); //Fetches the row as an associative array with DB attributes as keys
-		$ride_id = $client['ride_id'];
+		$ride_id = $client['r.ride_id'];
 		$ride_name = $client['ride_name'];
 		$ride_type= $client['ride_type'];
 		$ride_open = $client['ride_open'];

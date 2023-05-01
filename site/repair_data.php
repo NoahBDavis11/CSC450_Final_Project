@@ -4,20 +4,20 @@
 		
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		//Retrieve specific vendor data using prepared statements:
-		$query = "SELECT *, concat(rep_num, ride_id) as combKey, count(*) as rep_count, GROUP_CONCAT(emp_id SEPARATOR ', ') as assignedEmps FROM repairs natural join replacementParts natural join employees_repairs_perform WHERE ride_id = ? group by combKey";
+		$query = "SELECT *, concat(r.rep_num, r.ride_id) as combKey, count(*) as rep_count, GROUP_CONCAT(distinct emp_id SEPARATOR ', ') as assignedEmps FROM repairs r left join replacementParts rp on r.rep_num = rp.rep_num and r.ride_id = rp.ride_id left join employees_repairs_perform erp on r.rep_num = erp.rep_num and r.ride_id = erp.ride_id WHERE r.ride_id = 1 group by combKey;";
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_bind_param($stmt, "i", $ride_id);
 		mysqli_stmt_execute($stmt);
 		$result = mysqli_stmt_get_result($stmt); 
 		$rows = mysqli_num_rows($result);
 		$client = mysqli_fetch_assoc($result); //Fetches the row as an associative array with DB attributes as keys
-		$ride_id = $client['ride_id'];
-		$rep_num = $client['rep_num'];
-		$rep_st= $client['rep_start_date'];
-		$rep_fin_date = $client['rep_fin_date'];
-		$rep_cost = $client['total_cost'];
-		$rep_comp = $client['rep_company_name'];
-		$rep_desc = $client['rep_description'];
+		$ride_id = $client['r.ride_id'];
+		$rep_num = $client['r.rep_num'];
+		$rep_st= $client['r.rep_start_date'];
+		$rep_fin_date = $client['r.rep_fin_date'];
+		$rep_cost = $client['r.total_cost'];
+		$rep_comp = $client['r.rep_company_name'];
+		$rep_desc = $client['r.rep_description'];
 		$emps = $client['assignedEmps'];
 		$rep_cnt = $client['rep_count'];
 
