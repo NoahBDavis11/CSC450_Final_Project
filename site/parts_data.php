@@ -34,7 +34,6 @@
             <tr>
                 <th>Ride ID</th>
 				<th>Ride Name</th>
-                <th>Repair Number</th>
                 <th>Replacement Part</th>
             </tr>
         </thead>
@@ -43,7 +42,6 @@
             <tr>
 				<td><?php echo $row['ride_id']; ?></td>
                 <td><?php echo $row['ride_name']; ?></td>
-                <td><?php echo $row['rep_num']; ?></td>
                 <td><?php echo $row['part']; ?></td>
             </tr>
             <?php endwhile; ?>

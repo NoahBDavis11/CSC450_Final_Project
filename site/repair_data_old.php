@@ -9,7 +9,7 @@ if(!empty($_GET['ride_id'])) {
 		LEFT JOIN replacementParts rp ON r.rep_num = rp.rep_num AND r.ride_id = rp.ride_id 
 		LEFT JOIN employees_repairs_perform erp ON r.rep_num = erp.rep_num AND r.ride_id = erp.ride_id 
 		WHERE r.ride_id = ?
-		GROUP BY combKey";
+		GROUP BY r.ride_id";
 	$stmt = mysqli_prepare($dbc, $query);
 	mysqli_stmt_bind_param($stmt, "i", $ride_id);
 	mysqli_stmt_execute($stmt);
@@ -19,7 +19,7 @@ if(!empty($_GET['ride_id'])) {
 	if ($rows > 0) {
 		$client = mysqli_fetch_assoc($result);
 		$ride_id = $client['ride_id'];
-		$rep_num = $client['rep_num'];
+		$rep_nums = $client['rep_nums'];
 		$rep_st = $client['rep_start_date'];
 		$rep_fin_date = $client['rep_fin_date'];
 		$rep_cost = $client['total_cost'];
@@ -47,7 +47,7 @@ else {
 </head>
 <body>
 	<h2>Ride: <?php echo $ride_id;?></h2>
-	<h2>Repair Num: <?php echo $rep_num;?></h3> 
+	<h2>Repair Nums: <?php echo $rep_nums;?></h3> 
 	<h3>Start Date: <?php echo $rep_st;?></h3> 
 	<h3>Finish Date: <?php echo $rep_fin_date;?></h3>
 	<h3>Total Cost: <?php echo $rep_cost;?></h3> 
