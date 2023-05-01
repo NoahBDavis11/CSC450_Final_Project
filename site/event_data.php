@@ -45,6 +45,7 @@
 	<h3>Event End Date: <?php echo "$event_end_date";?></h2> 
 	<h3>Event Description: <?php echo "$event_description";?></h2> 
 	<h3><a href="find_event.html">Lookup another event</a></h3>
+	<h3><a href="find_employee.html">Lookup another event</a></h3>
 	<h3><a href="index.html">Back to Home</a></h3>
 </body>
 </html>
