@@ -4,7 +4,7 @@
 		
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		//Retrieve specific vendor data using prepared statements:
-		$query = "SELECT *, concat(str(rep_id),str(ride_id)) as combKey, count(*) as rep_count FROM repairs natural join replacementParts WHERE ride_id = ? group by combKey";
+		$query = "SELECT *, concat(rep_num, ride_id) as combKey, count(*) as rep_count FROM repairs natural join replacementParts WHERE ride_id = ? group by combKey";
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_bind_param($stmt, "s", $ride_id);
 		mysqli_stmt_execute($stmt);
