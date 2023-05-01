@@ -4,7 +4,7 @@
     
     $query = "SELECT *, GROUP_CONCAT(DISTINCT emp_id SEPARATOR ', ') AS opEmps 
               FROM parkConcessions c 
-              LEFT JOIN employees_concessions_operate eco ON c.cons_id = eco.cons_id 
+              LEFT JOIN employees_concessions_operate eco ON c.cons_id = eco.cons_id  
               GROUP BY c.cons_id";
     
     $result = mysqli_query($dbc, $query);
