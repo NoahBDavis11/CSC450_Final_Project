@@ -1,7 +1,1 @@
-Look at the files in the following order:
-
-1. index.html
-2. all_clients.php 
-3. find_client.html (calls client_data.php)
-4. find_manager.php (calls manager_data.php)
-5. add_manager.html (call insert_manager_data.php)
+This is a database that can be used for the operation of a theme park. It stores information on employees, park locations, buildings, rides, repairs, concessions and events. It is stored what employees operate which consessions, perform which repairs, operate which rides, host which events, and reside in which buildings. For events, rides, and concessions it is stored which section of the park and building they are in. Rides have a set of restrictions for who may ride it based on what ride it is. Repairs have a set of replacement parts based on the ride and repair.
