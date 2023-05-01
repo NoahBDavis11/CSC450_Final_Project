@@ -4,7 +4,7 @@
 		
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		//Retrieve specific vendor data using prepared statements:
-		$query = "SELECT *, concat(rep_num, ride_id) as combKey, count(*) as rep_count FROM repairs natural join replacementParts natural join employees_repairs_perform WHERE ride_id = ? group by combKey";
+		$query = "SELECT *, concat(rep_num, ride_id) as combKey, count(*) as rep_count, GROUP_CONCAT(emp_id SEPARATOR ', ') as assignedEmps FROM repairs natural join replacementParts natural join employees_repairs_perform WHERE ride_id = ? group by combKey";
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_bind_param($stmt, "i", $ride_id);
 		mysqli_stmt_execute($stmt);
@@ -18,6 +18,7 @@
 		$rep_cost = $client['total_cost'];
 		$rep_comp = $client['rep_company_name'];
 		$rep_desc = $client['rep_description'];
+		$emps = $client['assignedEmps'];
 		$rep_cnt = $client['rep_count'];
 
 	}
@@ -42,6 +43,7 @@
 	<h2>Finish Date: <?php echo "$rep_fin_date";?></h2>
 	<h3>Total Cost: <?php echo "$rep_cost";?></h2> 
 	<h3>Part Count: <?php echo "$rep_cnt";?></h2> 
+	<h3>Assigned Mechanics: <?php echo "$emps";?></h2> 
 	<h3>Company: <?php echo "$rep_comp";?></h2> 
 	<h3>Description: <?php echo "$rep_desc";?></h2>
 	<h3><a href="find_repair.html">Lookup another repair</a></h3>
