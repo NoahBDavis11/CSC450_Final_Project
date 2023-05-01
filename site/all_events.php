@@ -1,10 +1,15 @@
 <?php
-	ini_set ('error_reporting', 1); //Turns on error reporting - remove once everything works.
+    ini_set('display_errors', 1); error_reporting(E_ALL);
 	require_once('../mysqli_config.php'); //Connect to the database
-	$query = 'SELECT event_id, event_name, event_start_date, event_end_date, event_description, section_name, build_id, emp_id 
-			FROM parkEvents NATURAL JOIN parkEvents_parkLocations_resides NATURAL JOIN parkLocations 
-			NATURAL JOIN parkEvents_buildings_occureAt_at NATURAL JOIN buildings 
-			NATURAL JOIN employees_parkEvents_host NATURAL JOIN employees';
+	$query = "SELECT event_id, event_name, event_start_date, event_end_date, event_description, section_name, group_concat(distinct build_id SEPARATOR ' | ') as bldgs, group_concat(distinct emp_id SEPARATOR ' | ') as emps, group_concat(distinct section_name SEPARATOR ' | ') as locs 
+    FROM parkEvents 
+    NATURAL JOIN parkEvents_parkLocations_resides 
+    NATURAL JOIN parkLocations 
+    NATURAL JOIN parkEvents_buildings_occureAt_at 
+    NATURAL JOIN buildings 
+    NATURAL JOIN employees_parkEvents_host 
+    NATURAL JOIN employees group 
+    by event_id";
 	$result = mysqli_query($dbc, $query);
 	//Fetch all rows of result as an associative array
 	if($result)
@@ -32,9 +37,9 @@
 			<th>Start Date</th>
 			<th>End Date</th>
 			<th>Description</th>
-			<th>Section Name</th>
-			<th>Building ID</th>
-			<th>Employee ID</th>
+			<th>Sections</th>
+			<th>Buildings</th>
+			<th>Employees Assigned</th>
 		</tr>	
 		<?php foreach ($all_rows as $event) {
 			echo "<tr>";
@@ -43,9 +48,9 @@
 			echo "<td>".$event['event_start_date']."</td>";
 			echo "<td>".$event['event_end_date']."</td>";
 			echo "<td>".$event['event_description']."</td>";
-			echo "<td>".$event['section_name']."</td>";
-			echo "<td>".$event['build_id']."</td>";
-			echo "<td>".$event['emp_id']."</td>";
+			echo "<td>".$event['locs']."</td>";
+			echo "<td>".$event['bldgs']."</td>";
+			echo "<td>".$event['emps']."</td>";
 			echo "</tr>";
 		}
 		?>
