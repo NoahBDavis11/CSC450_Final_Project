@@ -4,7 +4,7 @@
 		
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		//Retrieve specific vendor data using prepared statements:
-		$query = "SELECT * FROM rides WHERE ride_id = ?";
+		$query = "SELECT *, GROUP_CONCAT(ride_restrictions SEPARATOR ', ') as rstcts, GROUP_CONCAT(emp_id SEPARATOR ', ') as opEmps FROM rides natural join passengerRestrictions natural join employees_rides_operates WHERE ride_id = ? group by ride_id";
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_bind_param($stmt, "i", $ride_id);
 		mysqli_stmt_execute($stmt);
@@ -17,6 +17,8 @@
 		$ride_open = $client['ride_open'];
 		$ride_close = $client['ride_close'];
 		$max_passengers = $client['max_passengers'];
+		$rstcts = $client['rstcts'];
+		$opEmps = $client['opEmps'];
 		$build_id = $client['build_id'];
 		$section_id = $client['section_id'];
 
@@ -42,6 +44,8 @@
 	<h2>Open Time: <?php echo "$ride_open";?></h2>
 	<h3>Close Time: <?php echo "$ride_close";?></h2> 
 	<h3>Max Passengers: <?php echo "$max_passengers";?></h2> 
+	<h3>Restrictions: <?php echo "$rstcts";?></h2> 
+	<h3>Employees Assigned: <?php echo "$opEmps";?></h2>
 	<h3>Building: <?php echo "$build_id";?></h2> 
 	<h3>Section: <?php echo "$section_id";?></h2>
 	<h3><a href="find_ride.html">Lookup another ride</a></h3>
