@@ -97,7 +97,21 @@ CREATE TABLE employees_repairs_perform (
     FOREIGN KEY (rep_num) REFERENCES repairs(rep_num),
     FOREIGN KEY (ride_id) REFERENCES repairs(ride_id));
 
-CREATE TABLE employees ( emp_id INT PRIMARY KEY AUTO_INCREMENT, emp_FN varchar(50) not null, emp_LN varchar(50) not null, street_name_num varchar(75) not null, city varchar(30) not null, emp_state varchar(30) not null,zip varchar(10) not null,country varchar(30) not null,primary_phone varchar(10) not null,emp_role varchar(50) not null,wage int, date_hired date not null,email varchar(75) not null,salary int);
+CREATE TABLE employees ( 
+emp_id INT PRIMARY KEY AUTO_INCREMENT, 
+emp_FN varchar(50) not null, 
+emp_LN varchar(50) not null, 
+street_name_num varchar(75) not null, 
+city varchar(30) not null, 
+emp_state varchar(30) not null,
+zip varchar(10) not null,
+country varchar(30) not null,
+primary_phone varchar(10) not null,
+emp_role varchar(50) not null,
+wage int, 
+date_hired date not null,
+email varchar(75) not null,
+salary int);
 
 create table replacementParts(part varchar(75) not null, rep_num int not null, ride_id int not null, primary key (part, rep_num, ride_id), foreign key (ride_id) references rides(ride_id),foreign key (rep_num) references repairs(rep_num))
 
