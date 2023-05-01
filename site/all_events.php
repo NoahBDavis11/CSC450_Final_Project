@@ -1,7 +1,7 @@
 <?php
 	ini_set ('error_reporting', 1); //Turns on error reporting - remove once everything works.
 	require_once('../mysqli_config.php'); //Connect to the database
-	$query = 'SELECT ccid, ccname, ccindustry, cclocation FROM HAcorpclient';
+	$query = 'SELECT event_id, event_name, event_start_date, event_end_date, event_description FROM parkEvents';
 	$result = mysqli_query($dbc, $query);
 	//Fetch all rows of result as an associative array
 	if($result)
@@ -16,30 +16,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>HAFA</title>
+    <title>Park Events</title>
 	<meta charset ="utf-8"> 
 </head>
 <body>
-	<h2>HAFA Corporate Clients</h2>
+	<h2>Park Events</h2>
 
 	<table>
 		<tr>
 			<th>ID</th>
 			<th>Name</th>
-			<th>Industry</th>
-			<th>Location</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Description</th>
 		</tr>	
-		<?php foreach ($all_rows as $client) {
+		<?php foreach ($all_rows as $event) {
 			echo "<tr>";
-			echo "<td>".$client['ccid']."</td>";
-			echo "<td>".$client['ccname']."</td>";
-			echo "<td>".$client['ccindustry']."</td>";
-			echo "<td>".$client['cclocation']."</td>";
+			echo "<td>".$event['event_id']."</td>";
+			echo "<td>".$event['event_name']."</td>";
+			echo "<td>".$event['event_start_date']."</td>";
+			echo "<td>".$event['event_end_date']."</td>";
+			echo "<td>".$event['event_description']."</td>";
 			echo "</tr>";
 		}
 		?>
 	</table>
 </body>    
 </html>
-
-
