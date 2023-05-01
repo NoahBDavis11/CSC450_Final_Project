@@ -1,8 +1,9 @@
 <?php
-    ini_set('error_reporting', E_ALL); // Turns on error reporting - remove once everything works.
-    require_once '../mysqli_config.php'; // Connect to the database
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);    require_once '../mysqli_config.php'; // Connect to the database
     
-    $query = "SELECT *, GROUP_CONCAT(distinct pr.ride_restrictions SEPARATOR ', ') as rstcts, GROUP_CONCAT(distinct emp_id SEPARATOR ', ') as opEmps FROM rides r left join passengerRestrictions pr on r.ride_id = pr.ride_id left join employees_rides_operates ero on r.ride_id = ero.ride_id WHERE r.ride_id = ? group by r.ride_id";
+    $query = "SELECT *, GROUP_CONCAT(distinct pr.ride_restrictions SEPARATOR ', ') as rstcts, GROUP_CONCAT(distinct emp_id SEPARATOR ', ') as opEmps FROM rides r left join passengerRestrictions pr on r.ride_id = pr.ride_id left join employees_rides_operates ero on r.ride_id = ero.ride_id group by r.ride_id";
 
     $result = mysqli_query($dbc, $query);
     
@@ -42,7 +43,7 @@
 
         <?php foreach ($all_rows as $row) { ?>
             <tr>
-                <td><?php echo $row['r.ride_id']; ?></td>
+                <td><?php echo $row['ride_id']; ?></td>
                 <td><?php echo $row['ride_name']; ?></td>
                 <td><?php echo $row['ride_type']; ?></td>
                 <td><?php echo $row['ride_open']; ?></td>
