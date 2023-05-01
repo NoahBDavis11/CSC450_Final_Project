@@ -36,7 +36,7 @@ CREATE TABLE passengerRestrictions (
     PRIMARY KEY (ride_restrictions),
     FOREIGN KEY (ride_id) REFERENCES rides(ride_id));
     
-CREATE TABLE parkConsessions
+CREATE TABLE parkConcessions
 (
     cons_id	INT			PRIMARY KEY		AUTO_INCREMENT,
     cons_company_name	VARCHAR(50),
@@ -47,7 +47,7 @@ CREATE TABLE parkConsessions
     build_id 			INT,
     section_id 			INT				NOT NULL,
 	FOREIGN KEY (build_id) REFERENCES
-    	Buildings(build_id),
+    	buildings(build_id),
     FOREIGN KEY (section_id) REFERENCES
     	parkLocations(section_id)
 	);
@@ -63,7 +63,7 @@ CREATE TABLE employees_concessions_operate (
     cons_id INT NOT NULL,
     emp_id INT NOT NULL,
     PRIMARY KEY (cons_id, emp_id),
-    FOREIGN KEY (cons_id) REFERENCES concessions(cons_id),
+    FOREIGN KEY (cons_id) REFERENCES parkConcessions(cons_id),
     FOREIGN KEY (emp_id) REFERENCES employees(emp_id));
 
 CREATE TABLE employees_parkEvents_host  (
