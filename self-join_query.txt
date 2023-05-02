@@ -1,0 +1,5 @@
+SELECT CONCAT(A.emp_FN,' ',A.emp_LN) AS Employee1, CONCAT(B.emp_FN,' ',B.emp_LN) AS Employee2, A.emp_role
+FROM employees A, employees B
+WHERE A.emp_id <> B.emp_id
+AND A.emp_role = B.emp_role
+ORDER BY A.emp_role;
