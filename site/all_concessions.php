@@ -2,7 +2,7 @@
     ini_set('error_reporting', E_ALL); // Turns on error reporting - remove once everything works.
     require_once '../mysqli_config.php'; // Connect to the database
     
-    $query = "SELECT *, GROUP_CONCAT(DISTINCT emp_id SEPARATOR ', ') AS opEmps 
+    $query = "SELECT *, c.cons_id as tmp, ifnull(GROUP_CONCAT(DISTINCT emp_id SEPARATOR ', '), 'none') AS opEmps 
               FROM parkConcessions c 
               LEFT JOIN employees_concessions_operate eco ON c.cons_id = eco.cons_id  
               GROUP BY c.cons_id";
@@ -44,7 +44,7 @@
     
         <?php foreach ($all_rows as $row) { ?>
             <tr>
-                <td><?php echo $row['cons_id']; ?></td>
+                <td><?php echo $row['tmp']; ?></td>
                 <td><?php echo $row['cons_name']; ?></td>
                 <td><?php echo $row['cons_type']; ?></td>
                 <td><?php echo $row['cons_open']; ?></td>

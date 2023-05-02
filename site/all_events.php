@@ -1,7 +1,7 @@
 <?php
     ini_set('display_errors', 1); error_reporting(E_ALL);
 	require_once('../mysqli_config.php'); //Connect to the database
-	$query = "SELECT sum(max_occupancy) as maxCount,sum(floor_size_sqft) as maxSize, event_id, event_name, event_start_date, event_end_date, event_description, section_name, group_concat(distinct build_id SEPARATOR ' | ') as bldgs, group_concat(distinct emp_id SEPARATOR ' | ') as emps, group_concat(distinct section_name SEPARATOR ' | ') as locs 
+	$query = "SELECT sum(max_occupancy) as maxCount,sum(floor_size_sqft) as maxSize, event_id, event_name, event_start_date, event_end_date, event_description, section_name, group_concat(distinct build_id SEPARATOR ', ') as bldgs, group_concat(distinct emp_id SEPARATOR ', ') as emps, group_concat(distinct section_name SEPARATOR ', ') as locs 
     FROM parkEvents 
     NATURAL JOIN parkEvents_parkLocations_resides 
     NATURAL JOIN parkLocations 
