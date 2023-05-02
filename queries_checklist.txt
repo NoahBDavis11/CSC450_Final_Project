@@ -57,7 +57,7 @@ LIMIT 1
 
 Functionality:
 
-One stored function – 
+One stored function – Eric
 DELIMITER $$
 CREATE FUNCTION years_hired(date1 date) RETURNS INT DETERMINISTIC
 BEGIN
