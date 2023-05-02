@@ -6,7 +6,14 @@ Three-table join –
 
 "SELECT * FROM replacementParts natural join repairs natural join rides WHERE rep_num = ?";
 
-Self-join – 
+Self-join – AJ
+
+SELECT CONCAT(A.emp_FN,' ',A.emp_LN) AS Employee1, CONCAT(B.emp_FN,' ',B.emp_LN) AS Employee2, A.emp_role
+FROM employees A, employees B
+WHERE A.emp_id <> B.emp_id
+AND A.emp_role = B.emp_role 
+and A.emp_id > B.emp_id
+ORDER BY A.emp_role;
 
 SELECT CONCAT(A.emp_FN,' ',A.emp_LN) AS Employee1, CONCAT(B.emp_FN,' ',B.emp_LN) AS Employee2, A.emp_role
 FROM employees A, employees B
