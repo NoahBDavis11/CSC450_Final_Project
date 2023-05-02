@@ -1,6 +1,6 @@
 <?php
 /*This code assumes user input is valid and correct only for demo purposes - it does NOT validate form data.*/
-	if(!empty($_GET['id'])) { //must have at least a managerid not = NULL
+	if(!empty($_GET['id'])) { //must have at least a employeeid not = NULL
 		$id = $_GET['id'];
 		$last = $_GET['last'];
 		$first = $_GET['first'];
