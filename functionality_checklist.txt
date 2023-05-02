@@ -1,0 +1,9 @@
+One stored function – 
+
+One stored procedure – 
+
+One trigger – 
+
+Include queries in your front-end that demonstrate the function and the procedure – 
+You do not need to include the trigger in your front-end. 
+The queries for the function, the procedure, and the trigger count towards the 10 required queries.
