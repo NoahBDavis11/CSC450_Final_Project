@@ -51,7 +51,7 @@
 </head>
 <body>
 	<h2>Repair was successfully added</h2>
-	<h3><a href="add_manager.html">Add another repair</a><h3>
+	<h3><a href="add_repair.html">Add another repair</a><h3>
 	<h3><a href="index.html">Back to Home</a></h3>
 </body>
 </html>

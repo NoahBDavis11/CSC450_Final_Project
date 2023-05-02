@@ -39,7 +39,7 @@
 </head>
 <body>
 	<h2>Employee was successfully added</h2>
-	<h3><a href="add_manager.html">Add another Employee</a><h3>
+	<h3><a href="add_employee.html">Add another Employee</a><h3>
 	<h3><a href="index.html">Back to Home</a></h3>
 </body>
 </html>
