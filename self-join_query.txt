@@ -1,8 +1,0 @@
-SELECT CONCAT(A.emp_FN,' ',A.emp_LN) AS Employee1, CONCAT(B.emp_FN,' ',B.emp_LN) AS Employee2, A.emp_role
-FROM employees A, employees B
-WHERE A.emp_id <> B.emp_id
-AND A.emp_role = B.emp_role 
-and A.emp_id > B.emp_id
-ORDER BY A.emp_role;
-
-SELECT CONCAT(A.emp_FN,' ',A.emp_LN) AS EmployeeA, CONCAT(B.emp_FN,' ',B.emp_LN) AS EmployeeB, A.emp_role FROM(SELECT DISTINCT emp_id, emp_FN, emp_LN, emp_role FROM employees) A CROSS JOIN(SELECT DISTINCT emp_id, emp_FN, emp_LN, emp_role FROM employees) B LEFT JOIN employees ON(A.emp_role = B.emp_role) WHERE A.emp_id <> B.emp_id ORDER BY A.emp_role; 
