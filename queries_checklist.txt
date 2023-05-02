@@ -57,11 +57,24 @@ LIMIT 1
 
 Functionality:
 
-One stored function – 
+One stored function – Eric
+Function takes a given date and returns difference in years between the current date and the given date
+
+DELIMITER $$
+CREATE FUNCTION years_hired(date1 date) RETURNS INT DETERMINISTIC
+BEGIN
+ DECLARE date2 DATE;
+  SELECT current_date() INTO date2;
+  RETURN year(date2) - year(date1);
+END $$
+DELIMITER ;
+
+Call returns table that returns all employees and how many years they have been working at the company
+SELECT emp_id, emp_FN, emp_LN, years_hired(date_hired) AS 'Years working at park' FROM employees;
 
 One stored procedure – Eric
+Procedure provides total sum cost of all repairs done at the amusement park
 
-Stored Procedure
 DELIMITER //
 CREATE PROCEDURE getRepairCostSum()
 BEGIN
