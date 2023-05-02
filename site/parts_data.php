@@ -1,13 +1,12 @@
 <?php
-    if(!empty($_GET['ride_id']) and !empty($_GET['rep_num'])) {
-        $ride_id = $_GET['ride_id'];
+    if(!empty($_GET['rep_num'])) {
         $rep_num = $_GET['rep_num'];
         
         require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
         //Retrieve specific vendor data using prepared statements:
-        $query = "SELECT * FROM replacementParts natural join repairs natural join rides WHERE ride_id = ? and rep_num = ?";
+        $query = "SELECT * FROM replacementParts natural join repairs natural join rides WHERE rep_num = ?";
         $stmt = mysqli_prepare($dbc, $query);
-        mysqli_stmt_bind_param($stmt, "ii", $ride_id, $rep_num);
+        mysqli_stmt_bind_param($stmt, "i", $rep_num);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt); 
         $rows = mysqli_num_rows($result);
