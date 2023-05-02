@@ -9,7 +9,7 @@
 		
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		//Retrieve specific vendor data using prepared statements:
-		$query = "SELECT *, concat(street_name_num, ' ', city, ' ', emp_state, ' ', zip, ' ', country) as address FROM employees natural join (SELECT emp_id, emp_FN, emp_LN, years_hired(date_hired) AS 'Years working at park' FROM employees) as ed WHERE emp_id = ? order by emp_id";
+		$query = "SELECT *, concat(street_name_num, ' ', city, ' ', emp_state, ' ', zip, ' ', country) as address FROM employees natural join (SELECT emp_id, emp_FN, emp_LN, years_hired(date_hired) AS 'years_worked' FROM employees) as ed WHERE emp_id = ? order by emp_id";
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_bind_param($stmt, "i", $emp_id);
 		mysqli_stmt_execute($stmt);
