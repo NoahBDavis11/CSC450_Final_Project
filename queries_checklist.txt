@@ -2,9 +2,17 @@ SELECT queries demonstrating:
 
 Two-table join – Noah
 
+SELECT *, GROUP_CONCAT(DISTINCT emp_id SEPARATOR ', ') AS opEmps 
+FROM parkConcessions c 
+LEFT JOIN employees_concessions_operate eco ON c.cons_id = eco.cons_id  
+GROUP BY c.cons_id
+
 Three-table join – Noah
 
-"SELECT * FROM replacementParts natural join repairs natural join rides WHERE rep_num = ?";
+"SELECT * 
+FROM replacementParts 
+natural join repairs 
+natural join rides WHERE rep_num = ?";
 
 Self-join – AJ
 
@@ -32,8 +40,19 @@ A text-based-search query using LIKE with wildcard(s) – Noah
 
 Select ride_name, ride_restrictions from rides natural join passengerRestrictions where ride_restrictions Like "%weight%"; 
 
-A subquery – 
+A subquery – Noah
+Rides located in the most crowded park section.
 
+SELECT ride_name 
+FROM rides 
+NATURAL JOIN buildings 
+WHERE section_id = (
+SELECT section_id 
+FROM buildings 
+GROUP BY section_id 
+ORDER BY COUNT(*) DESC 
+LIMIT 1
+);
 
 
 Functionality:
