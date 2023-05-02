@@ -58,10 +58,19 @@ LIMIT 1
 Functionality:
 
 One stored function – 
+DELIMITER $$
+CREATE FUNCTION years_hired(date1 date) RETURNS INT DETERMINISTIC
+BEGIN
+ DECLARE date2 DATE;
+  SELECT current_date() INTO date2;
+  RETURN year(date2) - year(date1);
+END $$
+DELIMITER ;
+
+SELECT emp_id, emp_FN, emp_LN, years_hired(date_hired) AS 'Years working at park' FROM employees;
 
 One stored procedure – Eric
 
-Stored Procedure
 DELIMITER //
 CREATE PROCEDURE getRepairCostSum()
 BEGIN
