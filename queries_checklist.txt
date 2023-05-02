@@ -1,6 +1,7 @@
 SELECT queries demonstrating: 
 
 Two-table join – Noah
+Joins park concessions and concession operator tables to provide all employees who operate concessions and which ones they do
 
 SELECT *, GROUP_CONCAT(DISTINCT emp_id SEPARATOR ', ') AS opEmps 
 FROM parkConcessions c 
@@ -8,6 +9,7 @@ LEFT JOIN employees_concessions_operate eco ON c.cons_id = eco.cons_id
 GROUP BY c.cons_id
 
 Three-table join – Noah
+Joins rides, repairs, and replacement parts tables
 
 "SELECT * 
 FROM replacementParts 
@@ -24,6 +26,7 @@ and A.emp_id > B.emp_id
 ORDER BY A.emp_role;
 
 An aggregate function – Noah
+Makes an entry for every repair a ride has had and how many parts that repair had, along with additional string formatting.
 
 SELECT *, r.rep_num as rep_id, count(part) as pt_count,  IFNULL(GROUP_CONCAT(distinct erp.emp_id SEPARATOR ', '), 'none') as assignedEmps 
 FROM repairs r 
@@ -33,10 +36,12 @@ WHERE r.ride_id = ?
 GROUP BY r.rep_num;
 
 An aggregate function using GROUP BY and HAVING – Noah
+Aggregate function that displayes each ride taht has had at least 3 repairs done to it
 
 Select ride_name, count(*) as Repair_Count from repairs natural join rides group by ride_id having count(*) > 2;
 
 A text-based-search query using LIKE with wildcard(s) – Noah
+Search query that returns all passenger restrictions for rides that are based on 'weight'.
 
 Select ride_name, ride_restrictions from rides natural join passengerRestrictions where ride_restrictions Like "%weight%"; 
 
