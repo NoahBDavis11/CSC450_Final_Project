@@ -17,6 +17,8 @@ natural join repairs
 natural join rides WHERE rep_num = ?";
 
 Self-join – AJ
+Displays the full names of two employees that share the same role. 
+Their ids cannot be the same and the first employee must have a greater id than the second to avoid duplicate.
 
 SELECT CONCAT(A.emp_FN,' ',A.emp_LN) AS Employee1, CONCAT(B.emp_FN,' ',B.emp_LN) AS Employee2, A.emp_role
 FROM employees A, employees B
@@ -87,4 +89,16 @@ BEGIN
 END //
 DELIMITER ;
 
-One trigger – 
+One trigger – AJ
+If after an employee is inserted into the database their wage is NULL then it is set to 40000.
+
+DELIMITER $$
+CREATE TRIGGER after_employees_insert
+AFTER INSERT
+ON employees FOR EACH ROW
+BEGIN
+    IF NEW.wage IS NULL THEN
+        UPDATE employees SET NEW.wage = 40000;
+    END IF;
+END$$
+DELIMITER ;
