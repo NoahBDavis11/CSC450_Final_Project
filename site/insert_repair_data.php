@@ -5,21 +5,25 @@
 		$ride_id = $_GET['ride_id'];
 		$rep_company_name = $_GET['rep_company_name'];
 		$rep_start_date = $_GET['rep_start_date'];
+		$rep_start_date = date('Y-m-d', strtotime($rep_start_date));
 		$rep_fin_date = $_GET['rep_fin_date'];
+		$rep_fin_date = date('Y-m-d', strtotime($rep_fin_date));
 		$rep_description = $_GET['rep_description'];
 		$total_cost = $_GET['total_cost'];
-		$parts = $_GET['parts'];
+
 
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		
-		$query3 = "INSERT INTO repairs VALUES (?,?,?,?,?,?)";
+		$query3 = "INSERT INTO repairs (ride_id,rep_company_name,rep_start_date,rep_fin_date,rep_description,total_cost) VALUES (?,?,?,?,?,?)";
 		$stmt3 = mysqli_prepare($dbc, $query3);
 		
 		//second argument one for each ? either i(integer), d(double), b(blob), s(string or anything else)
-		mysqli_stmt_bind_param($stmt3, "isddsi", $ride_id, $rep_company_name, $rep_start_date, $rep_fin_date, $rep_description, $total_cost); 
-		mysqli_stmt_execute($stmt3)
+		mysqli_stmt_bind_param($stmt3, "issssi", $ride_id, $rep_company_name, $rep_start_date, $rep_fin_date, $rep_description, $total_cost); 
+		mysqli_stmt_execute($stmt3);
 
 		$rep_num = mysqli_insert_id($dbc);
+
+		$parts = $_GET['parts'];
 		$parts_array = explode(',', $parts);
 
 		foreach ($parts_array as $part) {

@@ -7,12 +7,12 @@
 <body>
 	<h2>Add a new repair:</h2>
 	<form action = "insert_repair_data.php" method="get">
-		<h3>Ride ID: <input type="text" name = "ride_id"></h3>
+		<h3>Ride ID: <input type="number" name = "ride_id"></h3>
 		<h3>Repair Company Name: <input type="text" name = "rep_company_name"></h3>
-		<h3>Start Date: <input type="text" name = "rep_start_date" placeholder="yyyy-mm-dd"></h3>
-		<h3>End Date: <input type="text" name = "rep_fin_date" placeholder="yyyy-mm-dd"></h3>
+		<h3>Start Date: <input type="date" name = "rep_start_date"></h3>
+		<h3>End Date: <input type="date" name = "rep_fin_date"></h3>
 		<h3>Description: <input type="text" name = "rep_description"></h3>
-		<h3>Total Cost: <input type="text" name = "total_cost"></h3>
+		<h3>Total Cost: <input type="number" name = "total_cost"></h3>
 		<h3>Part(s) [seperate with comma]: <input type="text" name = "parts"></h3>
 		<input type="submit" value="Submit">
 	</form>
