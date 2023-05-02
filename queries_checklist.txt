@@ -1,0 +1,15 @@
+SELECT queries demonstrating: 
+
+Two-table join – NOAH
+
+Three-table join – NOAH
+
+Self-join – 
+
+An aggregate function – NOAH
+
+An aggregate function using GROUP BY and HAVING – 
+
+A text-based-search query using LIKE with wildcard(s) – 
+
+A subquery – 
