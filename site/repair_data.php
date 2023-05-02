@@ -1,4 +1,5 @@
 <?php
+    ini_set('display_errors', 1); error_reporting(E_ALL);
     if(!empty($_GET['ride_id'])) {
         $ride_id = $_GET['ride_id'];
         
@@ -15,12 +16,19 @@
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt); 
         $rows = mysqli_num_rows($result);
+
+        $total_cost_result = mysqli_query($dbc, "CALL getRepairCostSum()");
+        $total_cost_row = mysqli_fetch_array($total_cost_result);
+        $total_cost = $total_cost_row[0];
+        
         mysqli_close($dbc);
     }
     else {
         echo "You have reached this page in error";
         exit;
     }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,6 +72,7 @@
     <?php else: ?>
     <p>No replacement parts found for the given ride and repair number.</p>
     <?php endif; ?>
+    <h3>Total Park Repair Expenses: $<?php echo $total_cost; ?></h3>
     <h3><a href="find_repair.html">Lookup another repair</a></h3>
     <h3><a href="index.html">Back to Home</a></h3>
 </body>
