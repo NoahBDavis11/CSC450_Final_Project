@@ -1,8 +1,8 @@
 SELECT queries demonstrating: 
 
-Two-table join –
+Two-table join – Noah
 
-Three-table join –
+Three-table join – Noah
 
 "SELECT * FROM replacementParts natural join repairs natural join rides WHERE rep_num = ?";
 
@@ -15,33 +15,32 @@ AND A.emp_role = B.emp_role
 and A.emp_id > B.emp_id
 ORDER BY A.emp_role;
 
-SELECT CONCAT(A.emp_FN,' ',A.emp_LN) AS Employee1, CONCAT(B.emp_FN,' ',B.emp_LN) AS Employee2, A.emp_role
-FROM employees A, employees B
-WHERE A.emp_id <> B.emp_id
-AND A.emp_role = B.emp_role 
-and A.emp_id > B.emp_id
-ORDER BY A.emp_role;
+An aggregate function – Noah
 
-An aggregate function –
-
-"SELECT *, r.rep_num as rep_id, count(part) as pt_count,  IFNULL(GROUP_CONCAT(distinct erp.emp_id SEPARATOR ', '), 'none') as assignedEmps 
+SELECT *, r.rep_num as rep_id, count(part) as pt_count,  IFNULL(GROUP_CONCAT(distinct erp.emp_id SEPARATOR ', '), 'none') as assignedEmps 
 FROM repairs r 
 LEFT JOIN replacementParts rp ON r.rep_num = rp.rep_num AND r.ride_id = rp.ride_id 
 LEFT JOIN employees_repairs_perform erp ON r.rep_num = erp.rep_num AND r.ride_id = erp.ride_id 
 WHERE r.ride_id = ?
-GROUP BY r.rep_num";
+GROUP BY r.rep_num;
 
-An aggregate function using GROUP BY and HAVING – 
+An aggregate function using GROUP BY and HAVING – Noah
 
-A text-based-search query using LIKE with wildcard(s) – 
+Select ride_name, count(*) as Repair_Count from repairs natural join rides group by ride_id having count(*) > 2;
+
+A text-based-search query using LIKE with wildcard(s) – Noah
+
+Select ride_name, ride_restrictions from rides natural join passengerRestrictions where ride_restrictions Like "%weight%"; 
 
 A subquery – 
+
+
 
 Functionality:
 
 One stored function – 
 
-One stored procedure – 
+One stored procedure – Eric
 
 Stored Procedure
 DELIMITER //
