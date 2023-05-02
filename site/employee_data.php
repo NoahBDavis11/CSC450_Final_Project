@@ -9,7 +9,7 @@
 		
 		require_once('../mysqli_config.php'); //adjust the relative path as necessary to find your config file
 		//Retrieve specific vendor data using prepared statements:
-		$query = "SELECT *, concat(street_name_num, ' ', city, ' ', emp_state, ' ', zip, ' ', country) as address FROM employees WHERE emp_id = ? order by emp_id";
+		$query = "SELECT *, concat(street_name_num, ' ', city, ' ', emp_state, ' ', zip, ' ', country) as address FROM employees natural join (SELECT emp_id, emp_FN, emp_LN, years_hired(date_hired) AS 'Years working at park' FROM employees) as ed WHERE emp_id = ? order by emp_id";
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_bind_param($stmt, "i", $emp_id);
 		mysqli_stmt_execute($stmt);
@@ -26,6 +26,7 @@
 		$email = $client['email'];
 		$salary= $client['salary'];
 		$address= $client['address'];
+		$years_worked= $client['years_worked'];
 	}	
 	else {
 		echo "You have reached this page in error";
@@ -51,6 +52,7 @@
 	<h3>Salary: <?php echo "$salary";?></h2>
 	<h3>Date Hired: <?php echo "$date_hired";?></h2>
 	<h3>Address: <?php echo "$address";?></h2> 
+	<h3>Years Worked: <?php echo "$years_worked";?></h2> 
 	<h3><a href="find_employee.html">Lookup another employee</a></h3>
 	<h3><a href="index.html">Back to Home</a></h3>
 </body>
